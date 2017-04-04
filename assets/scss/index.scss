@@ -1,0 +1,304 @@
+//<------------------------變數宣告------------------------>
+$color_blue:   #282f44; 
+$color_brown:  #e6af2e; 
+$color_yellow: #f5d061; 
+$color_white:  #ececec;
+
+@mixin size($w, $h) {
+    width: $w;
+    height: $h;
+}
+
+// 置中
+@mixin ab_center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+//<------------------------整體版型------------------------>
+
+* {
+    //border: solid 1px black !important;
+    font-family: "Oswald", "Microsoft JhengHei";
+}
+
+html, body {
+    overflow-x: hidden;
+    font-size: 16px;
+}
+
+//<----------------------樣式設定---------------------->
+
+// 導覽列
+nav.navbar {
+    transition: 0.5s;
+
+    a {
+        transition: 0.5s;
+    }
+}
+
+nav.navbar.at_top {
+    background-color: transparent;
+
+    a, a:visited {
+        color: $color_white;
+    }
+}
+
+// 首頁
+header {
+    position: relative;
+    background-color: $color_blue;
+    text-align: center;
+
+    .icon {
+        width: 80%;
+        max-width: 250px;
+        padding: 250px 0px;
+    }
+
+    .m_bottom {
+        position: absolute;
+        width: 95%;
+        bottom: 0px;
+        right: -20px;
+        animation: upin 2s both;
+    }
+
+    .explore {
+        @include ab_center;
+        font-size: 16px;
+        color: $color_yellow;
+        top: 85%;
+        opacity: 0;
+        transition: 0.5s;
+
+        &:after {
+            display: block;
+            content: "V";
+            transform: scaleX(1.2) scaleY(0.5);
+        }
+        &.at_top {
+            opacity: 1;
+        }
+    }
+}
+
+// Section
+section {
+    padding: 60px 0px;
+    position: relative;
+}
+
+// 關於
+section#section_about {
+    background-color: $color_brown;
+
+    .m_bottom {
+        position: absolute;
+        width: 60%;
+        top: calc(100% - 2px);
+        z-index: 3;
+    }
+
+    .container {
+        transform: rotate(15deg) scale(0.9);
+    }
+
+    .row {
+        height: 160px;
+        color: black;
+
+        .r1text {
+            font-size: 80px;
+        }
+        .r2text {
+            font-size: 35px;
+        }
+        .r3text {
+            font-size: 50px;
+            text-align: right;
+        }
+    }
+
+    .btn-area {
+        height: 150px;
+    }
+    a {
+        @include ab_center;
+        transform: translate(-50%, -50%) rotate(10deg);
+    }
+
+    .try {
+        transform: rotate(-15deg);
+    }
+    .try1 {
+        width: 350px;
+    }
+    .try2 {
+        width: 20px;
+        margin-left: 20px;
+    }
+    .try3 {
+        width: 150px;
+        margin-left: 70%;
+    }
+    .try4 {
+        width: 70px;
+        margin-left: 100%;
+    }
+    .try5 {
+        width: 80px;
+        margin-left: 100%;
+    }
+}
+
+// 服務
+section#section_service {
+    background-color: $color_white;
+    padding: 50px;
+
+    .col-sm-4 {
+        text-align: center;
+    }
+    h3 {
+        color: $color_brown;
+    }
+    .icon_service {
+        width: 60%;
+    }
+}
+
+// 作品
+section#section_works {
+    background-color: $color_white;
+
+    .marginbottom{
+        position: absolute;
+        width: 95%;
+        top: 100%;
+        right: -20px;
+        animation: upin 2s both;
+        z-index: 5;
+    }
+
+    .work {
+        height: 230px;
+        cursor: pointer;
+        position: relative;
+        padding: 5px;
+        overflow: hidden;
+
+
+        &:before {
+            content: "";
+            display: block;
+            opacity: 0;
+            @include ab_center;
+            @include size(100%, 100%);
+            background-color: rgba(black, 0.7);
+            z-index: 5;
+            transition: 0.5s;
+        }
+        &.big {
+            height: 460px;
+        }
+        .texts {
+            opacity: 0;
+            @include ab_center;
+            color: white;
+            z-index: 8;
+            transition: 0.5s;
+
+            .title {
+                line-height: 24px;
+            }
+        }
+
+        &:hover {
+            &:before, .texts {
+                opacity: 1;
+            }
+        }
+    }
+
+    .work img{
+        height: 100%;
+        @include ab_center;
+    }
+}
+
+// 作品
+section#section_contact {
+    background-color: $color_blue;
+    color: $color_white;
+    overflow: hidden;
+
+    .mails {
+        height: 400px;
+
+        .mailbody {
+            background-color: $color_white;
+            color: $color_blue;
+            padding: 20px;
+            padding-left: 40px;
+            position: absolute;
+            width: 90%;
+            transform: translateX(-30px);
+        }
+        .mailcover {
+            @include ab_center;
+            transform: rotate(5deg) scale(2.1) translate(-50%, -50%);
+            top: 70%;
+
+            img {
+                width: 120%;
+                top: 50px;
+            }
+        }
+    }
+
+    input,textarea {
+        display: block;
+        background-color: transparent;
+        border: none;
+        border: solid 3px $color_blue;
+    }
+    textarea {
+        @include size(100%, 140px);
+    }
+}
+
+// Footer
+footer {
+    position: relative;
+    background-color: $color_brown;
+    text-align: center;
+
+    .icon {
+        width: 80%;
+        max-width: 250px;
+        padding: 80px 0px;
+    }
+
+}
+
+//<----------------------時間設定---------------------->
+
+
+
+//<-----------------------動畫設定----------------------->
+
+// .m_bottomg
+@keyframes upin {
+    0% {
+        bottom: -100px;
+    }
+
+    100% {
+        bottom: 0px;
+    }
+}
